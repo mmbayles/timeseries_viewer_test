@@ -47,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tethysapp/timeseries_viewer_test/templates/timeseries_viewer_test/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.625">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.87931037">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
               </folding>
@@ -69,10 +69,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tethysapp/timeseries_viewer_test/public/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45695364">
+            <state vertical-scroll-proportion="0.0">
               <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
               <folding>
                 <marker date="1463091371918" expanded="true" signature="17639:17690" placeholder="..." />
@@ -126,8 +126,8 @@
         <option value="$PROJECT_DIR$/tethysapp/timeseries_viewer_test/controllers.py" />
         <option value="$PROJECT_DIR$/tethysapp/timeseries_viewer_test/utilities.py" />
         <option value="$PROJECT_DIR$/tethysapp/timeseries_viewer_test/templates/timeseries_viewer_test/base.html" />
-        <option value="$PROJECT_DIR$/tethysapp/timeseries_viewer_test/templates/timeseries_viewer_test/home.html" />
         <option value="$PROJECT_DIR$/tethysapp/timeseries_viewer_test/public/js/main.js" />
+        <option value="$PROJECT_DIR$/tethysapp/timeseries_viewer_test/templates/timeseries_viewer_test/home.html" />
       </list>
     </option>
   </component>
@@ -563,22 +563,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tethysapp/timeseries_viewer_test/templates/timeseries_viewer_test/home.html">
+    <entry file="file://$PROJECT_DIR$/tethysapp/timeseries_viewer_test/public/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.625">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="4" selection-end-line="12" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+            <marker date="1463091371918" expanded="true" signature="17639:17690" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tethysapp/timeseries_viewer_test/public/js/main.js">
+    <entry file="file://$PROJECT_DIR$/tethysapp/timeseries_viewer_test/templates/timeseries_viewer_test/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45695364">
-          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.87931037">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
-            <marker date="1463091371918" expanded="true" signature="17639:17690" placeholder="..." />
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
