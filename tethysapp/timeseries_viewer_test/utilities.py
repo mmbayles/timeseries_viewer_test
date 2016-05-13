@@ -93,10 +93,15 @@ def parse_1_0_and_1_1(root,res_id):
             valuetype = None
             samplemedium = None
             smallest_value = 0
+            n = None
+            v = None
+            t= 0
             times =[]
+            x = 'x'
+            y = 'y'
             # iterate through xml document and read all values
-
-
+            print "parsing values from water ml"
+            print datetime.now()
             for element in root.iter():
 
                 bracket_lock = -1
@@ -107,13 +112,45 @@ def parse_1_0_and_1_1(root,res_id):
                 if 'value' == tag:
                     try:
                         my_times.append(element.attrib['dateTimeUTC'])
+                        n = element.attrib['dateTimeUTC']
+
                     except:
                         my_times.append(element.attrib['dateTime'])
+                        n =element.attrib['dateTime']
                     try:
                         quality= element.attrib['qualityControlLevel']
                     except:
                         quality1 =''
                     my_values.append(element.text)
+                    v = element.text
+                    ti = pd.Timestamp(n)#pandas convert string to time object
+                    tii = ti.value/1000000 #gets timestamp and convert time to milliseconds
+
+
+
+                    # print tii
+                    # print n
+                    # try:
+                    #     t  = time.mktime(datetime.strptime(n,"%Y-%m-%dT%H:%M:%S").timetuple())
+                    # except:
+                    #     try:
+                    #         t= time.mktime(datetime.strptime(n,"%Y-%m-%dT%H:%M:%SZ-").timetuple())
+                    #     except:
+                    #         t= time.mktime(datetime.strptime(n,"%Y-%m-%dT%H:%M:%SZ").timetuple())
+
+                    t =t*1000# This adds three extra zeros for correct formatting
+
+                    if v == nodata:
+                        value = None
+                        for_canvas.append({x:tii,y:value})
+                        # for_highchart.append({x:t, y:value})
+                        # dy = str(t)+',NaN\n'
+                        # for_dy.append(dy)
+                    else:
+                        for_canvas.append({x:tii,y:float(v)})
+                        for_graph.append(float(v))
+
+
                 else:
                     # in the xml there is a unit for the value, then for time. just take the first
                     if 'unitName' == tag or 'units' ==tag:
@@ -148,66 +185,57 @@ def parse_1_0_and_1_1(root,res_id):
             # Measuring the WaterML processing time ...
 
 
-            print "parse variables !!!!!!!!!!!!!!!!!!!!!"
-            print datetime.now()
-            for i in range(0, len(my_times)):
-                # if we get past the threshold, break
-                if i >= threshold:
-                    break
 
-                # parse date and time
+            # for i in range(0, len(my_times)):
+            #     # if we get past the threshold, break
+            #     if i >= threshold:
+            #         break
+            #     # parse date and time
+            #     # t = dateutil.parser.parse(my_times[i], ignoretz=True)
+            #     # formatting time for HighCharts (milliseconds since Jan1 1970)
+            #     # t = int((t - datetime(1970, 1, 1)).total_seconds() * 1000)
+            #     # check to see  there are null values in the time series
+            #     #new time converter
+            #     # time5 = my_times[i] used to fix an issue with WOFpy
+            #     # # time1 = time5[:-6]
+            #     # print "Create time !!!!!!!!!!!!!!!!!!!!!"
+            #     # print datetime.now()
+            #     try:
+            #         t= time.mktime(datetime.strptime(my_times[i],"%Y-%m-%dT%H:%M:%S").timetuple())
+            #     except:
+            #         try:
+            #             t= time.mktime(datetime.strptime(my_times[i],"%Y-%m-%dT%H:%M:%SZ-").timetuple())
+            #         except:
+            #             t= time.mktime(datetime.strptime(my_times[i],"%Y-%m-%dT%H:%M:%SZ").timetuple())
+            #
+            #     t =t*1000# This adds three extra zeros for correct formatting
+            #
+            #     # print "Store time and values!!!!!!!!!!!!!!!!!!!!!"
+            #     # print datetime.now()
+            #     if my_values[i] == nodata:
+            #         value = 'null'
+            #         for_canvas.append({x:t,y:value})
+            #         # for_highchart.append({x:t, y:value})
+            #         # dy = str(t)+',NaN\n'
+            #         # for_dy.append(dy)
+            #     else:
+            #         for_canvas.append({x:t,y:float(my_values[i])})
+            #         for_graph.append(float(my_values[i]))
+            #
+            #         # for_highchart.append([t, float(my_values[i])])
+            #         # times.append(t)
+            #         # vals = str(float(my_values[i]))
+            #         # dy = str("%.0f" % float(t)
+            #         # for_dy.append(dy+','+vals+" \n")
+            #         # both = "%.0f" % t,my_values[i]
+            #         # # for_dy.append( ', '.join(map(str,both)))
+            #         # str_time = "%.0f" %t
+            #         # str_values = str(float(my_values[i]))
+            #         # for_dy.append([float("%.0f" %t),float(my_values[i])])
+            #         # for_dy.append([str_time,str_values])
+            #     # print "values stored !!!!!!!!!!!!!!!!!!!!!"
+            #     # print datetime.now()
 
-                # t = dateutil.parser.parse(my_times[i], ignoretz=True)
-                # formatting time for HighCharts (milliseconds since Jan1 1970)
-                # t = int((t - datetime(1970, 1, 1)).total_seconds() * 1000)
-                # check to see  there are null values in the time series
-                #new time converter
-
-                # time5 = my_times[i] used to fix an issue with WOFpy
-                # time1 = time5[:-6]
-
-                try:
-                    t= time.mktime(datetime.strptime(my_times[i],"%Y-%m-%dT%H:%M:%S").timetuple())
-                except:
-                    try:
-                        t= time.mktime(datetime.strptime(my_times[i],"%Y-%m-%dT%H:%M:%SZ-").timetuple())
-                    except:
-                        t= time.mktime(datetime.strptime(my_times[i],"%Y-%m-%dT%H:%M:%SZ").timetuple())
-
-                t =t*1000# This adds three extra zeros for correct formatting
-                x = 'x'
-                y = 'y'
-                if my_values[i] == nodata:
-                    value = 'null'
-                    for_canvas.append({x:t,y:value})
-                    # for_highchart.append({x:t, y:value})
-                    # dy = str(t)+',NaN\n'
-                    # for_dy.append(dy)
-
-                else:
-                    for_canvas.append({x:t,y:float(my_values[i])})
-                    # for_highchart.append([t, float(my_values[i])])
-
-                    # times.append(t)
-
-                    # vals = str(float(my_values[i]))
-                    # dy = str("%.0f" % float(t))
-
-                    # for_dy.append(dy+','+vals+" \n")
-                    for_graph.append(float(my_values[i]))
-
-                    # both = "%.0f" % t,my_values[i]
-                    # # for_dy.append( ', '.join(map(str,both)))
-                    # str_time = "%.0f" %t
-                    # str_values = str(float(my_values[i]))
-                    # for_dy.append([float("%.0f" %t),float(my_values[i])])
-                    # for_dy.append([str_time,str_values])
-
-
-
-
-            print "parse end !!!!!!!!!!!!!!!!!!!!!"
-            print datetime.now()
 
             # smallest_time = for_canvas[0][0]
             value_count = len(for_canvas)
@@ -463,7 +491,7 @@ def read_error_file(xml_file):
 
 def unzip_waterml(request, res_id,src):
     # print "unzip!!!!!!!"
-    print "zip"
+    print "unzipping"
     print datetime.now()
     # this is where we'll unzip the waterML file to
     temp_dir = get_workspace()
@@ -532,7 +560,7 @@ def unzip_waterml(request, res_id,src):
                 return False
 
     # finally we return the waterml_url
-    print "zip end"
+    print "File created"
     print datetime.now()
     return waterml_url
 

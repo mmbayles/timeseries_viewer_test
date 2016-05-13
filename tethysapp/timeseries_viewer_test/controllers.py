@@ -23,6 +23,8 @@ import pandas
 
 # formats the time series for highcharts
 def chart_data(request, res_id, src):
+    print "start chart_data"
+    print datetime.now()
     # checks if we already have an unzipped xml file
     file_path = utilities.waterml_file_path(res_id)
     # if we don't have the xml file, downloads and unzips it
@@ -41,7 +43,8 @@ def chart_data(request, res_id, src):
     # csv_file = utilities.get_workspace() + "/id/master.csv"
 
     # print csv_file
-    print "controller"
+    print "JSON Reponse"
+    print datetime.now()
     # data = []
     # data1 = []
     # with open(csv_file) as csvfile:
